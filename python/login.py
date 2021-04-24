@@ -1,5 +1,11 @@
 import tkinter
 
+import loginpage
+
+def back_to_login(thispanel, window):
+    thispanel.pack_forget()
+    loginpage.display(window)
+
 def display(prev, window):
     prev.pack_forget()
     
@@ -12,6 +18,17 @@ def display(prev, window):
     )
     login_page.pack()
 
+    # Back Button
+    back_button = tkinter.Button(
+        window,
+        text = "<",
+        font=("sans-serif", 12),
+        width = 5,
+        height = 2,
+        command=lambda: back_to_login(login_page, window)
+    )
+    back_button.place(x=100, y=100)
+    
     # Elements
     header = tkinter.Label(
         window,
@@ -60,3 +77,5 @@ def display(prev, window):
         width=20
     )
     login_button.place(x=330, y=300)
+
+    

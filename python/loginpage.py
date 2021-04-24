@@ -29,8 +29,8 @@ def display(window):
         bg = "red",
         width = 30,
         height = 2,
-        command =lambda: login.display(login_page, window)
-        )
+        command=lambda: login.display(login_page, window)
+    )
     login_button.place(x=100, y=300)
 
     register_button = tkinter.Button(
@@ -41,5 +41,5 @@ def display(window):
         width = 30,
         height = 2,
         command =lambda: register.display(login_page, window)
-        )
+    )
     register_button.place(x=400, y=300)
