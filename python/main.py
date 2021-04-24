@@ -1,7 +1,16 @@
+import tkinter
 import loginpage
 
 try:
-    # Run the login page
+        print("Running...")
+        window = tkinter.Tk()
+        
+        loginpage.display(window)
 
+        #-------------WINDOWS PROPERTIES--------/
+        window.title("Restaurant Login and Registration System")
+        window.geometry("800x600+250+50")
+        window.resizable(False, False)
+        window.mainloop()
 except Exception as error:
-    print(f'An error occured while running the app: {error}')
+        print(f"An error occured when running the program. cause {error}")
