@@ -1,5 +1,8 @@
 import tkinter
 
+import login
+import register
+
 def display(window):
     # Frame
     login_page = tkinter.Frame(
@@ -12,8 +15,12 @@ def display(window):
 
     # Elements
     logo = tkinter.Label(
-        
+        window,
+        text="SWAB TASTE",
+        bg="white",
+        font=("Castellar", 25)
     )
+    logo.place(x=300, y=100)
 
     login_button = tkinter.Button(
         window,
@@ -21,8 +28,8 @@ def display(window):
         font=("sans-serif", 12),
         bg = "red",
         width = 30,
-        height = 2
-        # command =login
+        height = 2,
+        command =lambda: login.display(login_page, window)
         )
     login_button.place(x=100, y=300)
 
@@ -33,6 +40,6 @@ def display(window):
         bg = "red",
         width = 30,
         height = 2
-        # command =register
+        # command =lambda: register.display(login_page, window)
         )
     register_button.place(x=400, y=300)
