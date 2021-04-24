@@ -15,7 +15,7 @@ def display(prev, window):
     # Elements
     header = tkinter.Label(
         window,
-        text="REGISTRATION",
+        text="LOGIN",
         bg="white",
         font=("Castellar", 25)
     )
@@ -23,7 +23,7 @@ def display(prev, window):
 
     username_text = tkinter.Label(
         window,
-        text="Username",
+        text="Username:",
         bg="white",
         font=("sans-serif", 15)
     )
@@ -54,9 +54,9 @@ def display(prev, window):
     
     login_button = tkinter.Button(
         window,
-        text = "Login",
+        text="Login",
         font=("sans-serif", 12),
-        bg = "red",
-        width = 20
-        )
+        bg="red",
+        width=20
+    )
     login_button.place(x=330, y=300)

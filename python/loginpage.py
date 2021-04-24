@@ -39,7 +39,7 @@ def display(window):
         font=("sans-serif", 12),
         bg = "red",
         width = 30,
-        height = 2
-        # command =lambda: register.display(login_page, window)
+        height = 2,
+        command =lambda: register.display(login_page, window)
         )
     register_button.place(x=400, y=300)
