@@ -1,9 +1,7 @@
-import tkinter
+import loginpage
 
-root = tkinter.Tk()
+try:
+    # Run the login page
 
-panel = tkinter.Frame(root)
-panel.config(width=500, height=500, background="light blue")
-panel.pack()
-
-root.mainloop()
+except Exception as error:
+    print(f'An error occured while running the app: {error}')
