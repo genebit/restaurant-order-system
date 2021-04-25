@@ -1,32 +1,14 @@
 import tkinter
-import time
+from PIL import Image
 
 def display(panel, window):
     panel.pack_forget()
     
-    # Frame
-    menu_page = tkinter.Frame(
-        window,
-        bg="white",
-        width=800,
-        height=600
-    )
+    menu_page = tkinter.Frame(window, bg="white", width=813, height=581)
     menu_page.pack()
 
-    menu_page = tkinter.Label(
-        window,
-        text="Welcome to SwabTaste",
-        bg="white",
-        font=("arial", 25, 'bold')
-    )
-    menu_page.place(x=220, y=20)
+    img = tkinter.PhotoImage(file="./img/menu.png")
 
-    menu_page = tkinter.Label(
-        window,
-        text="ALL-YOU-CAN-EAT-BUFFET",
-        bg="white",
-        font=("arial", 13, 'bold')
-    )
-    menu_page.place(x=290, y=70)
-
-
+    canvas = tkinter.Canvas(menu_page, width=813, height=581)      
+    canvas.create_image(400, 300, image=img)   
+    canvas.pack()    
