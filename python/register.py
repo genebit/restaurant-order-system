@@ -24,19 +24,19 @@ def display(prev, window):
         text="<",
         font=("sans-serif", 12),
         width=5,
-        height=2,
+        height=1,
         command=lambda: back_to_login(register_page, window)
     )
-    back_button.place(x=100, y=100)
+    back_button.place(x=150, y=105)
 
     # Elements
     header = tkinter.Label(
         window,
         text="REGISTRATION",
         bg="white",
-        font=("Castellar", 25)
+        font=("arial", 25, 'bold')
     )
-    header.place(x=250, y=50)
+    header.place(x=275, y=100)
 
     username_text = tkinter.Label(
         window,
@@ -44,14 +44,14 @@ def display(prev, window):
         bg="white",
         font=("sans-serif", 15)
     )
-    username_text.place(x=250, y=110)
+    username_text.place(x=250, y=200)
 
     username = tkinter.Entry(
         window,
         width=30,
         font=("sans-serif", 15)
     )
-    username.place(x=250, y=150)
+    username.place(x=250, y=250)
 
     password_text = tkinter.Label(
         window,
@@ -59,7 +59,7 @@ def display(prev, window):
         bg="white",
         font=("sans-serif", 15)
     )
-    password_text.place(x=250, y=190)
+    password_text.place(x=250, y=300)
 
     password = tkinter.Entry(
         window,
@@ -67,7 +67,7 @@ def display(prev, window):
         show="•",
         font=("sans-serif", 15)
     )
-    password.place(x=250, y=230)
+    password.place(x=250, y=350)
     
     register_button = tkinter.Button(
         window,
@@ -76,4 +76,6 @@ def display(prev, window):
         bg="red",
         width=20
         )
-    register_button.place(x=330, y=300)
+    register_button.place(x=330, y=450)
+    
+

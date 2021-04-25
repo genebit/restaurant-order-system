@@ -18,7 +18,7 @@ def display(window):
         window,
         text="SWAB TASTE",
         bg="white",
-        font=("Castellar", 25)
+        font=("arial", 25)
     )
     logo.place(x=300, y=100)
 
@@ -31,7 +31,7 @@ def display(window):
         height = 2,
         command=lambda: login.display(login_page, window)
     )
-    login_button.place(x=100, y=300)
+    login_button.place(x=100, y=400)
 
     register_button = tkinter.Button(
         window,
@@ -42,4 +42,4 @@ def display(window):
         height = 2,
         command =lambda: register.display(login_page, window)
     )
-    register_button.place(x=400, y=300)
+    register_button.place(x=400, y=400)
