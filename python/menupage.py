@@ -3,7 +3,7 @@ import time
 
 def display(panel, window):
     panel.pack_forget()
-
+    
     # Frame
     menu_page = tkinter.Frame(
         window,

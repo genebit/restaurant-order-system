@@ -8,7 +8,7 @@ try:
     loginpage.display(window)
 
     # Window Properties
-    window.title("Restaurant Login and Registration System")
+    window.title("Restaurant Management")
     window.geometry("800x600+250+50")
     window.resizable(False, False)
     window.mainloop()

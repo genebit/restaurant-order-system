@@ -1,6 +1,16 @@
 import tkinter
+import sqlite3
 
 import loginpage
+import menupage
+
+username = 0
+password = 0
+user_exist = False
+
+register_page = 0
+
+empty = ""
 
 def back_to_login(thispanel, window):
     thispanel.pack_forget()
@@ -10,6 +20,7 @@ def display(prev, window):
     prev.pack_forget()
     
     # Frame
+    global register_page
     register_page = tkinter.Frame(
         window,
         bg="white",
@@ -46,6 +57,7 @@ def display(prev, window):
     )
     username_text.place(x=250, y=200)
 
+    global username
     username = tkinter.Entry(
         window,
         width=30,
@@ -61,6 +73,7 @@ def display(prev, window):
     )
     password_text.place(x=250, y=300)
 
+    global password
     password = tkinter.Entry(
         window,
         width=30,
@@ -74,8 +87,69 @@ def display(prev, window):
         text = "Register",
         font=("sans-serif", 12),
         bg="red",
-        width=20
+        width=20,
+        command=lambda: register(window)
         )
     register_button.place(x=330, y=450)
-    
 
+def register(window):
+    if username.get() is not empty and password.get() is not empty:
+        if_user_exist(username.get(), password.get())
+        
+        if user_exist == False:
+            # Register
+            register_user(username.get(), password.get())
+            menupage.display(register_page, window)
+        else:
+            print("User found! Use login")
+        
+    else:
+        print("Missing field")
+
+def if_user_exist(name, password):
+    try:    
+        file_destination = "./database/users.db"
+
+        connection = None
+        connection = sqlite3.connect(file_destination)
+        
+        cur = connection.cursor()
+        cur.execute(f"SELECT Username, Password FROM Accounts WHERE Username='{name}' AND Password='{password}'")
+        
+        results = cur.fetchall()
+
+        global user_exist
+        
+        try:
+            username = results[0][0]
+            password = results[0][1]
+            
+            if username is not [] and password is not []:
+                user_exist = True
+        except:
+            username = None
+            password = None
+
+            user_exist = False
+        connection.close()
+
+    except sqlite3.Error as err:
+        print(err)
+
+def register_user(username, password):
+    try:    
+        file_destination = "./database/users.db"
+
+        connection = None
+        connection = sqlite3.connect(file_destination)
+        
+        cur = connection.cursor()
+        inserted_data = "INSERT INTO Accounts(Username, Password)VALUES(?, ?);"
+        
+        cur.execute(inserted_data, (username, password))
+        connection.commit()
+        connection.close()
+
+        print("Finished sending to database")
+    except sqlite3.Error as err:
+        print(err)
