@@ -96,6 +96,8 @@ def login(window):
         if_user_exist(username.get(), password.get())
         
         if user_exist:
+            print("The user exist")
+            print("Displaying the menupage...")
             # Login successful proceed to homepage
             menupage.display(login_page, window)
         else:
@@ -106,7 +108,7 @@ def login(window):
 
 def if_user_exist(name, password):
     try:    
-        file_destination = "./database/users.db"
+        file_destination = "/media/gene/HDD Data/Programming Languages/Python/restaurant-order-system/database/users.db-journal"
 
         connection = None
         connection = sqlite3.connect(file_destination)

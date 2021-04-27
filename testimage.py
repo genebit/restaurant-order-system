@@ -1,7 +1,6 @@
 import tkinter
 from PIL import Image
 
-
 root = tkinter.Tk()
 
 root.config(background="black")

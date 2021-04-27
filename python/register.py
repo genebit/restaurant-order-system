@@ -98,6 +98,7 @@ def register(window):
         
         if user_exist == False:
             # Register
+            print("User does not exist! Registering...")
             register_user(username.get(), password.get())
             menupage.display(register_page, window)
         else:
@@ -119,6 +120,7 @@ def if_user_exist(name, password):
         results = cur.fetchall()
 
         global user_exist
+        print("Finished registering to database")
         
         try:
             username = results[0][0]
