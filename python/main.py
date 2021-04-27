@@ -2,16 +2,17 @@ import tkinter
 from PIL import ImageTk, Image
 
 import loginpage
+import registerpage
 
 try:
     print("Running...")
     window = tkinter.Tk()
 
-    path = "./img/login.png"
-    loginImage = ImageTk.PhotoImage(Image.open(path))
+    loginPathImg = "./img/login.png"
+    img = ImageTk.PhotoImage(Image.open(loginPathImg))
     
-    loginpage.show(window, loginImage)
-
+    loginpage.show(window, img)
+    
     window.geometry("800x620")
     window.config(background="white")
     window.title("Swab Taste!")

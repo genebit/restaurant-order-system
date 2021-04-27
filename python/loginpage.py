@@ -3,6 +3,7 @@ import sqlite3
 from PIL import ImageTk, Image
 
 import menupage
+import registerpage
 
 loginPage = None
 usernameInputField = None
@@ -39,9 +40,13 @@ def show(window, img):
     registerButton = tkinter.Button(
         loginPage, text="REGISTER", font=("Roboto", 18), 
         borderwidth=0, highlightthickness=0, width=9,
-        # command=login : register()
+        command=lambda : register(window)
     )
     registerButton.place(x=576, y=358)
+
+def register(window):
+    print("Direct to Register Page.")
+
 
 def login(window, username, password):
     print("Logging user...")
