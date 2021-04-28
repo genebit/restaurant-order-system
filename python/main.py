@@ -2,8 +2,6 @@ import tkinter
 import sqlite3
 from PIL import Image, ImageTk
 
-import loginpage
-
 window = tkinter.Tk()
 
 empty = ""
@@ -28,20 +26,23 @@ def login():
             connection = None
             connection = sqlite3.connect(path)
             
+            cur = connection.cursor()
             cur = connection.execute(f"SELECT * FROM Accounts WHERE Username='{l_usernameInputField.get()}' AND Password='{l_passwordInputField.get()}';")
-            results = cur.fetchall()
+            results = cur.fetchone()
 
-            if results is not []:
+            if results != None:
                 print("Authentication satisfied. Sending to Menu page...")
             else:
                 print("User is not recorded! Please Register and try again.")
+
+            connection.close()
 
         except sqlite3.Error as err:
             print(f"An error occured when 'Logging in', cause: {err}")
     else:
         print("Please fill in the fields")
 
-def register():
+def show_register_page():
     print("Registering...")
 
     l_page.pack_forget()
@@ -55,11 +56,65 @@ def register():
     r_img_holder.pack()
 
     # Elements
+    global r_usernameInputField
     r_usernameInputField = tkinter.Entry(r_page, font=("sans-serif", 16), borderwidth=0, highlightthickness=0, width=37)
     r_usernameInputField.place(x=175, y=245)
 
+    global r_passwordInputField
     r_passwordInputField = tkinter.Entry(r_page, font=("sans-serif", 16), borderwidth=0, highlightthickness=0, width=37, show="•")
     r_passwordInputField.place(x=175, y=305)
+
+    register_button = tkinter.Button(
+        r_page, text="REGISTER", font=("Roboto", 18), 
+        borderwidth=0, highlightthickness=0, width=9,
+        bg="white", command=register
+    )
+    register_button.place(x=485, y=362)
+
+    back_button = tkinter.Button(
+        r_page, text="<", font=("Roboto", 20), 
+        borderwidth=0, highlightthickness=0, width=1,
+        bg="white", command=lambda: back(r_page)
+    )
+    back_button.place(x=44, y=178)
+
+def register():
+    print("Checking into the database")
+
+    if r_usernameInputField.get() is not empty and r_passwordInputField.get() is not empty:
+        print("Fields are satisfied, checking user if exist...")
+
+        path = "./database/users.db"
+        try:
+            connection = None
+            connection = sqlite3.connect(path)
+            
+            cur = connection.cursor()
+            cur.execute(f"SELECT * FROM Accounts WHERE Username='{r_usernameInputField.get()}';")
+            results = cur.fetchone()
+
+            if results != None:
+                print("User is already recorded, Please use the login...")
+            else:
+                print("Registering user...")
+                inserted_data = f"INSERT INTO Accounts(Username, Password)VALUES(?, ?);"
+
+                cur.execute(inserted_data, (r_usernameInputField.get(), r_usernameInputField.get()))
+                connection.commit()
+                print("Finished Registered user, Redirecting to Menu")
+
+            connection.close()
+            
+        except sqlite3.Error as err:
+            print(f"An error occured when 'Registering user', cause: {err}")
+    else:
+        print("Please fill in the fields")
+
+def back(panel):
+    print("Closing registration page")
+    
+    panel.destroy()
+    l_page.pack()
 
 try:
 
@@ -91,7 +146,7 @@ try:
     register_button = tkinter.Button(
         l_page, text="REGISTER", font=("Roboto", 18), 
         borderwidth=0, highlightthickness=0, width=9,
-        bg="white", command=register
+        bg="white", command=show_register_page
     )
     register_button.place(x=576, y=358)
     
