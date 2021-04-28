@@ -2,6 +2,7 @@ import tkinter
 import sqlite3
 from PIL import Image, ImageTk
 
+# To install pillow (PIL): terminal, pip install Pillow
 import menupage
 
 window = tkinter.Tk()
