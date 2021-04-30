@@ -29,6 +29,9 @@ def delete_orders():
     e_quantity.set(e_quantity.get() * 0)
     total_amount.set(total_amount.get() * 0)
 
+def confirmed_order():
+    
+
 def show(panel, window, img):
     print("Menu Page loaded.")
 
