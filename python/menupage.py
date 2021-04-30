@@ -34,7 +34,7 @@ def premium_set_clicked():
     for item in range(p_quantity.get()):
         p_total_amount.set(p_quantity.get() * PREMIUM_SET_PRICE)
         total_amount.set(p_total_amount.get() + e_total_amount.get())
-
+      
     # if p_quantity.get() >= 1:
     #     if current_date_and_month == CHRISTMAS_SALE_DATE[0] or 
     #     current_date_and_month == CHRISTMAS_SALE_DATE[1] or 
