@@ -1,5 +1,13 @@
 import tkinter
 from tkinter import messagebox
+from datetime import datetime
+
+# FORMULA:
+# Find the original price (for example $90)
+# Get the the discount percentage (for example 20%)
+# Calculate the savings: 20% of $90 = $18
+# Subtract the savings from the original price to get the sale price: $90 - $18 = $72
+# You're all set!
 
 p_quantity = tkinter.IntVar()
 PREMIUM_SET_PRICE = 600
@@ -11,12 +19,30 @@ p_total_amount = tkinter.IntVar()
 e_total_amount = tkinter.IntVar()
 total_amount = tkinter.IntVar()
 
+currentDay = datetime.now().day
+currentMonth = datetime.now().month
+current_date_and_month = f"{currentDay}-{currentMonth}"
+
+CHRISTMAS_SALE_DATE = ["26-12", "27-12", "28-12"]
+DISCOUNTED_PERCENTAGE = 0.30
+
+discount_status = tkinter.StringVar()
+
 def premium_set_clicked():
     p_quantity.set(p_quantity.get() + 1)
     
     for item in range(p_quantity.get()):
         p_total_amount.set(p_quantity.get() * PREMIUM_SET_PRICE)
         total_amount.set(p_total_amount.get() + e_total_amount.get())
+
+    # if p_quantity.get() >= 1:
+    #     if current_date_and_month == CHRISTMAS_SALE_DATE[0] or 
+    #     current_date_and_month == CHRISTMAS_SALE_DATE[1] or 
+    #     current_date_and_month == CHRISTMAS_SALE_DATE[2]:
+
+    #         discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
+    #     else:
+    #         discount_status.set("NO DISCOUNT APPLIED")
 
 def emperor_set_clicked():
     e_quantity.set(e_quantity.get() + 1)
@@ -57,6 +83,10 @@ def show(panel, window, img):
     emperor_text.place(x=440, y=340)
     total_text.place(x=440, y=400)
     
+    # Discount
+    discount_text = tkinter.Label(menu_page, textvariable=discount_status, font=("Roboto", 13), bg="white")
+    discount_text.place(x=480, y=210)
+
     # Variables
     p_quantity_text = tkinter.Label(menu_page, textvariable=p_quantity, font=("Roboto", 14), bg="white")
     p_quantity_text.place(x=650, y=310) 
