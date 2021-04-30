@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import messagebox
 
 p_quantity = tkinter.IntVar()
 PREMIUM_SET_PRICE = 600
@@ -29,8 +30,10 @@ def delete_orders():
     e_quantity.set(e_quantity.get() * 0)
     total_amount.set(total_amount.get() * 0)
 
-def confirmed_order():
-    
+def confirmed_order(window):
+    if messagebox.showinfo(title="Payment Info", message="PAYMENT SUCCESSFULL!"):
+        print("Message box closed")
+        # window.destroy()
 
 def show(panel, window, img):
     print("Menu Page loaded.")
@@ -89,7 +92,7 @@ def show(panel, window, img):
     confirm_order_button = tkinter.Button(
         menu_page, text="CONFIRM \nORDER", font=("Roboto", 13), 
         borderwidth=0, highlightthickness=0, width=9, height=2,
-        bg="white"
+        bg="white", command=lambda : confirmed_order(window)
     )
     confirm_order_button.place(x=540, y=500)
 
