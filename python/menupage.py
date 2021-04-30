@@ -6,13 +6,28 @@ PREMIUM_SET_PRICE = 600
 e_quantity = tkinter.IntVar()
 EMPEROR_SET_PRICE = 800
 
+p_total_amount = tkinter.IntVar()
+e_total_amount = tkinter.IntVar()
 total_amount = tkinter.IntVar()
 
 def premium_set_clicked():
     p_quantity.set(p_quantity.get() + 1)
     
     for item in range(p_quantity.get()):
-        total_amount.set(counter.get() * PREMIUM_SET_PRICE)
+        p_total_amount.set(p_quantity.get() * PREMIUM_SET_PRICE)
+        total_amount.set(p_total_amount.get() + e_total_amount.get())
+
+def emperor_set_clicked():
+    e_quantity.set(e_quantity.get() + 1)
+    
+    for item in range(e_quantity.get()):
+        e_total_amount.set(e_quantity.get() * EMPEROR_SET_PRICE)
+        total_amount.set(p_total_amount.get() + e_total_amount.get())
+
+def delete_orders():
+    p_quantity.set(p_quantity.get() * 0)
+    e_quantity.set(e_quantity.get() * 0)
+    total_amount.set(total_amount.get() * 0)
 
 def show(panel, window, img):
     print("Menu Page loaded.")
@@ -43,12 +58,9 @@ def show(panel, window, img):
     e_quantity_text = tkinter.Label(menu_page, textvariable=e_quantity, font=("Roboto", 14), bg="white")
     e_quantity_text.place(x=650, y=340) 
 
-    total_amount = tkinter.Label(menu_page, textvariable=total, font=("Roboto", 14), bg="white")
-    total_amount.place(x=650, y=400) 
+    total_amount_text = tkinter.Label(menu_page, textvariable=total_amount, font=("Roboto", 14), bg="white")
+    total_amount_text.place(x=650, y=400) 
 
-    # tkinter.Button(root, text="Increase", command=onClick).pack()
-    # tkinter.Label(root, textvariable=total).pack()
-    
     # Buttons
     premium_set_order_button = tkinter.Button(
         menu_page, text="Premium Set", font=("Roboto", 15), 
@@ -60,14 +72,14 @@ def show(panel, window, img):
     emperor_set_order_button = tkinter.Button(
         menu_page, text="Emperor Set", font=("Roboto", 15), 
         borderwidth=0, highlightthickness=0, width=10,
-        bg="white"
+        bg="white", command=emperor_set_clicked
     )
     emperor_set_order_button.place(x=227, y=210)
 
     delete_order_button = tkinter.Button(
         menu_page, text="DELETE", font=("Roboto", 14), 
         borderwidth=0, highlightthickness=0, width=6,
-        bg="white"
+        bg="white", command=delete_orders
     )
     delete_order_button.place(x=438, y=515)
 
