@@ -34,44 +34,44 @@ def show(panel, window, img):
     emperor_text.place(x=440, y=340)
     total_text.place(x=440, y=400)
     
-    p_quantity_text = tkinter.Label(menu_page, textvariable=quantity, font=("Roboto", 13))
-    p_quantity_text.place(x=400, y=200) 
+    # p_quantity_text = tkinter.Label(menu_page, textvariable=quantity, font=("Roboto", 13))
+    # p_quantity_text.place(x=500, y=300) 
                                             
-    tkinter.Button(root, text="Increase", command=onClick).pack()
-    tkinter.Label(root, textvariable=total).pack()
+    # tkinter.Button(root, text="Increase", command=onClick).pack()
+    # tkinter.Label(root, textvariable=total).pack()
     
     # Buttons
     premium_set_order_button = tkinter.Button(
         menu_page, text="Premium Set", font=("Roboto", 15), 
-        borderwidth=0, highlightthickness=0, width=10,
-        bg="white", command=premium_set_clicked
+        borderwidth=5, highlightthickness=0, width=10, height=1,
+        bg="white", #command=premium_set_clicked
     )
-    premium_set_order_button.place(x=62, y=210)
+    premium_set_order_button.place(x=70, y=210)
 
-    emperor_set_order_button = tkinter.Button(
-        menu_page, text="Emperor Set", font=("Roboto", 15), 
-        borderwidth=0, highlightthickness=0, width=10,
-        bg="white"
-    )
-    emperor_set_order_button.place(x=220, y=210)
+    # emperor_set_order_button = tkinter.Button(
+    #     menu_page, text="Emperor Set", font=("Roboto", 15), 
+    #     borderwidth=0, highlightthickness=0, width=10,
+    #     bg="white"
+    # )
+    # emperor_set_order_button.place(x=220, y=210)
 
-    delete_order_button = tkinter.Button(
-        menu_page, text="DELETE", font=("Roboto", 14), 
-        borderwidth=0, highlightthickness=0, width=5,
-        bg="white"
-    )
-    delete_order_button.place(x=430, y=510)
+    # delete_order_button = tkinter.Button(
+    #     menu_page, text="DELETE", font=("Roboto", 14), 
+    #     borderwidth=0, highlightthickness=0, width=5,
+    #     bg="white"
+    # )
+    # delete_order_button.place(x=430, y=510)
 
-    confirm_order_button = tkinter.Button(
-        menu_page, text="CONFIRM \nORDER", font=("Roboto", 12), 
-        borderwidth=0, highlightthickness=0, width=7, height=2,
-        bg="white"
-    )
-    confirm_order_button.place(x=540, y=500)
+    # confirm_order_button = tkinter.Button(
+    #     menu_page, text="CONFIRM \nORDER", font=("Roboto", 12), 
+    #     borderwidth=0, highlightthickness=0, width=7, height=2,
+    #     bg="white"
+    # )
+    # confirm_order_button.place(x=540, y=500)
 
-    logout_button = tkinter.Button(
-        menu_page, text="LOGOUT", font=("Roboto", 14), 
-        borderwidth=0, highlightthickness=0, width=5,
-        bg="white"
-    )
-    logout_button.place(x=660, y=510)
+    # logout_button = tkinter.Button(
+    #     menu_page, text="LOGOUT", font=("Roboto", 14), 
+    #     borderwidth=0, highlightthickness=0, width=5,
+    #     bg="white"
+    # )
+    # logout_button.place(x=660, y=510)
