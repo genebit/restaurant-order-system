@@ -1,16 +1,18 @@
 import tkinter
 
-quantity = tkinter.IntVar()
+p_quantity = tkinter.IntVar()
 PREMIUM_SET_PRICE = 600
+
+e_quantity = tkinter.IntVar()
 EMPEROR_SET_PRICE = 800
 
-total = tkinter.IntVar()
+total_amount = tkinter.IntVar()
 
 def premium_set_clicked():
-    counter.set(counter.get() + 1)
+    p_quantity.set(p_quantity.get() + 1)
     
-    for item in range(counter.get()):
-        total.set("TOTAL: {}".format(counter.get() * PRICE))
+    for item in range(p_quantity.get()):
+        total_amount.set(counter.get() * PREMIUM_SET_PRICE)
 
 def show(panel, window, img):
     print("Menu Page loaded.")
@@ -34,9 +36,16 @@ def show(panel, window, img):
     emperor_text.place(x=440, y=340)
     total_text.place(x=440, y=400)
     
-    # p_quantity_text = tkinter.Label(menu_page, textvariable=quantity, font=("Roboto", 13))
-    # p_quantity_text.place(x=500, y=300) 
-                                            
+    # Variables
+    p_quantity_text = tkinter.Label(menu_page, textvariable=p_quantity, font=("Roboto", 14), bg="white")
+    p_quantity_text.place(x=650, y=310) 
+    
+    e_quantity_text = tkinter.Label(menu_page, textvariable=e_quantity, font=("Roboto", 14), bg="white")
+    e_quantity_text.place(x=650, y=340) 
+
+    total_amount = tkinter.Label(menu_page, textvariable=total, font=("Roboto", 14), bg="white")
+    total_amount.place(x=650, y=400) 
+
     # tkinter.Button(root, text="Increase", command=onClick).pack()
     # tkinter.Label(root, textvariable=total).pack()
     
@@ -44,7 +53,7 @@ def show(panel, window, img):
     premium_set_order_button = tkinter.Button(
         menu_page, text="Premium Set", font=("Roboto", 15), 
         borderwidth=0, highlightthickness=0, width=10, height=1,
-        bg="white", #command=premium_set_clicked
+        bg="white", command=premium_set_clicked
     )
     premium_set_order_button.place(x=70, y=210)
 
