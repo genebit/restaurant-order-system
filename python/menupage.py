@@ -33,7 +33,7 @@ def delete_orders():
 def confirmed_order(window):
     if messagebox.showinfo(title="Payment Info", message="PAYMENT SUCCESSFULL!"):
         print("Message box closed")
-        # window.destroy()
+        window.destroy()
 
 def show(panel, window, img):
     print("Menu Page loaded.")
@@ -99,6 +99,6 @@ def show(panel, window, img):
     logout_button = tkinter.Button(
         menu_page, text="LOGOUT", font=("Roboto", 14), 
         borderwidth=0, highlightthickness=0, width=6,
-        bg="white"
+        bg="white", command=lambda : window.destroy()
     )
     logout_button.place(x=663, y=515)
