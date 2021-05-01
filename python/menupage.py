@@ -13,9 +13,7 @@ p_total_amount = tkinter.IntVar()
 e_total_amount = tkinter.IntVar()
 total_amount = tkinter.IntVar()
 
-# Discount
-# current_date_and_month = f"{datetime.now().day}-{datetime.now().month}"
-current_date_and_month = f"{26}-{12}"
+current_date_and_month = f"{datetime.now().day}-{datetime.now().month}"
 
 CHRISTMAS_SALE_DATE = ["26-12", "27-12", "28-12"]
 DISCOUNTED_PERCENTAGE = 0.30
