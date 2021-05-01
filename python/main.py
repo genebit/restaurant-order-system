@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 window = tkinter.Tk()
 import menupage
-
+    
 database_path = "./database/users.db"
 empty = ""
 

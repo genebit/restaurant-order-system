@@ -1,4 +1,5 @@
 import tkinter
+import time
 from tkinter import messagebox
 from datetime import datetime
 
@@ -14,14 +15,13 @@ total_amount = tkinter.IntVar()
 
 # Discount
 # current_date_and_month = f"{datetime.now().day}-{datetime.now().month}"
-
-current_date_and_month = f"{1}-{5}"
+current_date_and_month = f"{26}-{12}"
 
 CHRISTMAS_SALE_DATE = ["26-12", "27-12", "28-12"]
 DISCOUNTED_PERCENTAGE = 0.30
 
 discount_status = tkinter.StringVar()
-
+discounted = tkinter.BooleanVar()
 
 def premium_set_clicked():
     p_quantity.set(p_quantity.get() + 1)
@@ -32,8 +32,10 @@ def premium_set_clicked():
 
     if p_quantity.get() >= 1:
         if current_date_and_month == CHRISTMAS_SALE_DATE[0] or current_date_and_month == CHRISTMAS_SALE_DATE[1] or current_date_and_month == CHRISTMAS_SALE_DATE[2]:
-            discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
+            discounted.set(True)
+            discount_status.set("DISCOUNT APPLIED, SAVED {}% OFF!".format(DISCOUNTED_PERCENTAGE * 100))
         else:
+            discounted.set(False)
             discount_status.set("NO DISCOUNT APPLIED")
 
 def emperor_set_clicked():
@@ -45,9 +47,11 @@ def emperor_set_clicked():
 
     if e_quantity.get() >= 1:
         if current_date_and_month == CHRISTMAS_SALE_DATE[0] or current_date_and_month == CHRISTMAS_SALE_DATE[1] or current_date_and_month == CHRISTMAS_SALE_DATE[2]:
-            discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
+            discount_status.set("DISCOUNT APPLIED, SAVED {}% OFF!".format(DISCOUNTED_PERCENTAGE * 100))
+            discounted.set(True)
         else:
             discount_status.set("NO DISCOUNT APPLIED")
+            discounted.set(False)
 
 def delete_orders():
     p_quantity.set(p_quantity.get() * 0)
@@ -55,9 +59,17 @@ def delete_orders():
     total_amount.set(total_amount.get() * 0)
 
 def confirmed_order(window):
-    if messagebox.showinfo(title="Payment Info", message="PAYMENT SUCCESSFULL!"):
-        print("Message box closed")
-        window.destroy()
+    if discounted.get() == True:
+        x = total_amount.get() * DISCOUNTED_PERCENTAGE
+        total_amount.set(total_amount.get() - x)
+        
+        if messagebox.showinfo(title="Payment Info", message="PAYMENT SUCCESSFULL! SAVED {} PESOS OFF!".format(x)):
+            print("Message box closed")
+            window.destroy()
+    else:
+        if messagebox.showinfo(title="Payment Info", message="PAYMENT SUCCESSFULL!"):
+            print("Message box closed")
+            window.destroy()
 
 def show(panel, window, img):
     print("Menu Page loaded.")
@@ -82,8 +94,8 @@ def show(panel, window, img):
     total_text.place(x=440, y=400)
     
     # Discount
-    discount_text = tkinter.Label(menu_page, textvariable=discount_status, font=("Roboto", 13), bg="white")
-    discount_text.place(x=480, y=210)
+    discount_text = tkinter.Label(menu_page, textvariable=discount_status, font=("Roboto", 12), bg="white")
+    discount_text.place(x=435, y=210)
 
     # Variables
     p_quantity_text = tkinter.Label(menu_page, textvariable=p_quantity, font=("Roboto", 14), bg="white")
