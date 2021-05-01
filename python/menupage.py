@@ -2,13 +2,6 @@ import tkinter
 from tkinter import messagebox
 from datetime import datetime
 
-# FORMULA:
-# Find the original price (for example $90)
-# Get the the discount percentage (for example 20%)
-# Calculate the savings: 20% of $90 = $18
-# Subtract the savings from the original price to get the sale price: $90 - $18 = $72
-# You're all set!
-
 p_quantity = tkinter.IntVar()
 PREMIUM_SET_PRICE = 600
 
@@ -19,14 +12,16 @@ p_total_amount = tkinter.IntVar()
 e_total_amount = tkinter.IntVar()
 total_amount = tkinter.IntVar()
 
-currentDay = datetime.now().day
-currentMonth = datetime.now().month
-current_date_and_month = f"{currentDay}-{currentMonth}"
+# Discount
+# current_date_and_month = f"{datetime.now().day}-{datetime.now().month}"
+
+current_date_and_month = f"{1}-{5}"
 
 CHRISTMAS_SALE_DATE = ["26-12", "27-12", "28-12"]
 DISCOUNTED_PERCENTAGE = 0.30
 
 discount_status = tkinter.StringVar()
+
 
 def premium_set_clicked():
     p_quantity.set(p_quantity.get() + 1)
@@ -34,15 +29,12 @@ def premium_set_clicked():
     for item in range(p_quantity.get()):
         p_total_amount.set(p_quantity.get() * PREMIUM_SET_PRICE)
         total_amount.set(p_total_amount.get() + e_total_amount.get())
-      
-    # if p_quantity.get() >= 1:
-    #     if current_date_and_month == CHRISTMAS_SALE_DATE[0] or 
-    #     current_date_and_month == CHRISTMAS_SALE_DATE[1] or 
-    #     current_date_and_month == CHRISTMAS_SALE_DATE[2]:
 
-    #         discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
-    #     else:
-    #         discount_status.set("NO DISCOUNT APPLIED")
+    if p_quantity.get() >= 1:
+        if current_date_and_month == CHRISTMAS_SALE_DATE[0] or current_date_and_month == CHRISTMAS_SALE_DATE[1] or current_date_and_month == CHRISTMAS_SALE_DATE[2]:
+            discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
+        else:
+            discount_status.set("NO DISCOUNT APPLIED")
 
 def emperor_set_clicked():
     e_quantity.set(e_quantity.get() + 1)
@@ -50,6 +42,12 @@ def emperor_set_clicked():
     for item in range(e_quantity.get()):
         e_total_amount.set(e_quantity.get() * EMPEROR_SET_PRICE)
         total_amount.set(p_total_amount.get() + e_total_amount.get())
+
+    if e_quantity.get() >= 1:
+        if current_date_and_month == CHRISTMAS_SALE_DATE[0] or current_date_and_month == CHRISTMAS_SALE_DATE[1] or current_date_and_month == CHRISTMAS_SALE_DATE[2]:
+            discount_status.set("DISCOUNT APPLIED SAVE {}% OFF!".format(DISCOUNTED_PERCENTAGE))
+        else:
+            discount_status.set("NO DISCOUNT APPLIED")
 
 def delete_orders():
     p_quantity.set(p_quantity.get() * 0)
